@@ -1,0 +1,52 @@
+---
+const collaborators = [
+  {
+    name: "Niel Angelo Gencaya",
+    role: "Software Engineer",
+    initials: "NG",
+    avatarBg: "#e8f4ff",
+    avatarText: "#0099ff",
+  },
+  {
+    name: "Rai Reyes Jr.",
+    role: "Software Developer",
+    initials: "RR",
+    avatarBg: "#edfff5",
+    avatarText: "#00b050",
+  },
+  {
+    name: "Reymart Louie Capapas",
+    role: "UI/UX Designer",
+    initials: "RC",
+    avatarBg: "#fdf0ff",
+    avatarText: "#9f4ef8",
+  },
+];
+---
+
+<section class="min-h-screen w-full flex items-center ">
+  <div class="container-page w-full py-20">
+    <p data-animate class="text-[11px] font-normal text-muted tracking-widest uppercase mb-4">People</p>
+    <h2 data-animate class="font-serif mb-3" style="font-size: clamp(28px, 4vw, 42px);">Collaborators</h2>
+    <p data-animate class="text-[14px] text-muted font-light mb-12">
+      The talented people I've had the pleasure of building with.
+    </p>
+
+    <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+      {collaborators.map((person, i) => (
+        <div data-animate style={`transition-delay: ${i * 80}ms;`} class="flex items-center gap-4 bg-white border border-[#ebebeb] rounded-xl px-6 py-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+          <div
+            class="w-12 h-12 rounded-full flex items-center justify-center text-[14px] font-medium shrink-0"
+            style={`background: ${person.avatarBg}; color: ${person.avatarText};`}
+          >
+            {person.initials}
+          </div>
+          <div>
+            <p class="text-[14px] font-normal mb-0.5">{person.name}</p>
+            <p class="text-[12px] text-muted font-light">{person.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

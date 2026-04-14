@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-sans: 'Poppins', system-ui, sans-serif;
+
+  --color-accent: #0099ff;
+  --color-muted: #666666;
+  --color-border: #b0aeae;
+  --color-surface: #f5f5f5;
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-black font-sans font-light text-sm leading-relaxed;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif font-normal leading-tight;
+  }
+}
+
+@utility container-page {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 8vw, 160px);
+}
+
+
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-surface);
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 400;
+  transition: border-color 0.2s ease;
+}

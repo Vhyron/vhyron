@@ -11,7 +11,12 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "dependencies": {
-    "astro": "^6.1.5"
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.5",
+    "tailwindcss": "^4.2.2"
   }
 }

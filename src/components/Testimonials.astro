@@ -1,0 +1,54 @@
+---
+const testimonials = [
+  {
+    quote:
+      "Working with Vhyron was a seamless experience from start to finish. The quality of output and attention to detail exceeded our expectations for the Goranow project.",
+    author: "Ryan Jay Lawas",
+    title: "Founder, Goranow",
+    initials: "RJ",
+  },
+  {
+    quote:
+      "Incredibly responsive and professional. Vhyron understood our requirements quickly and delivered results that were both functional and beautifully designed.",
+    author: "Farah Villamer",
+    title: "Client",
+    initials: "FV",
+  },
+  {
+    quote:
+      "The professionalism and dedication brought to every aspect of the project was remarkable. I'd work with Vhyron again without hesitation.",
+    author: "Lanze Mille",
+    title: "Client",
+    initials: "LM",
+  },
+];
+---
+
+<section class="min-h-screen w-full flex items-center " id="testimonials">
+  <div class="container-page w-full py-20">
+    <p data-animate class="text-[11px] font-normal text-muted tracking-widest uppercase mb-4">Testimonials</p>
+    <h2 data-animate class="font-serif mb-12" style="font-size: clamp(28px, 4vw, 42px);">What people say</h2>
+
+    <div class="grid gap-5" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+      {testimonials.map((t, i) => (
+        <div data-animate style={`transition-delay: ${i * 80}ms;`} class="border border-[#ebebeb] rounded-2xl p-8 flex flex-col gap-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
+          <div class="font-serif text-[56px] text-accent leading-[0.8] font-bold">"</div>
+
+          <p class="text-[14px] leading-[1.8] text-[#333] font-light flex-1">
+            {t.quote}
+          </p>
+
+          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-xs font-medium text-muted shrink-0">
+              {t.initials}
+            </div>
+            <div>
+              <p class="text-[13px] font-normal mb-0.5">{t.author}</p>
+              <p class="text-[11px] text-muted font-light">{t.title}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
