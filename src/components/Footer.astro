@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/vhieron-bareza" },
+  { label: "GitHub", href: "https://github.com/vhyron" },
+  { label: "Instagram", href: "https://www.instagram.com/ba.vhye/" },
+  { label: "Facebook", href: "https://facebook.com/vhyron" },
+];
+---
+
+<footer data-animate class="w-full border-t border-gray-100 py-10" id="contact">
+  <div class="container-page flex items-center justify-between flex-wrap gap-5">
+    <div>
+      <p class="font-serif text-[18px] font-bold mb-1.5">Vhyron</p>
+      <p class="text-xs text-muted font-light">© {year} Vhyron. All Rights Reserved.</p>
+    </div>
+    <nav class="flex gap-6 flex-wrap">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs text-muted font-light hover:text-black transition-colors duration-200"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</footer>

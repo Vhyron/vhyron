@@ -1,23 +1,155 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Vhyron — IT Project Manager",
+  description = "Computer engineering student specializing in project management, development, design, and deployment.",
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+    <script is:inline>
+      history.scrollRestoration = 'manual';
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="loader">
+      <div id="loader-top"></div>
+      <div id="loader-bottom">
+        <span id="loader-percent"><span id="loader-count">0</span><span id="loader-symbol">%</span></span>
+      </div>
+    </div>
+
+    <div id="page-content">
+      <slot />
+    </div>
+
+    <style>
+      #page-content {
+        transform: scale(0.92);
+        transform-origin: center top;
+        transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      #page-content.revealed {
+        transform: scale(1);
+      }
+
+
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      #loader-top,
+      #loader-bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
+        transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+        pointer-events: all;
+      }
+      #loader-top {
+        top: 0;
+      }
+      #loader-bottom {
+        bottom: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 48px;
+      }
+      #loader.open #loader-top {
+        transform: translateY(-100%);
+      }
+      #loader.open #loader-bottom {
+        transform: translateY(100%);
+      }
+      #loader-percent {
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(48px, 10vw, 96px);
+        font-weight: 300;
+        color: #111;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      #loader-symbol {
+        font-size: 0.45em;
+        vertical-align: super;
+        opacity: 0.4;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
+
+      (() => {
+        const el = document.getElementById('loader-count');
+        const loader = document.getElementById('loader');
+        let current = 0;
+        const duration = 1800;
+        const start = performance.now();
+
+        const tick = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          current = Math.floor(eased * 100);
+          if (el) el.textContent = String(current);
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            if (el) el.textContent = '100';
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+              loader?.classList.add('open');
+              document.getElementById('page-content')?.classList.add('revealed');
+              setTimeout(() => loader?.remove(), 950);
+            }, 200);
+          }
+        };
+
+        requestAnimationFrame(tick);
+      })();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

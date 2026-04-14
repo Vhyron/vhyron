@@ -1,0 +1,101 @@
+---
+const projects = [
+  {
+    name: "FireSafe",
+    subtitle: "Web Dashboard",
+    year: "2025",
+    roles: ["Development"],
+    description:
+      "An embedded college project displaying real-time sensor data from ESP8266 devices — fire and environmental monitoring visualized through a web dashboard.",
+    bg: "#fff5f5",
+    accent: "#ff4d4d",
+  },
+  {
+    name: "LatePortal",
+    subtitle: "Mobile App",
+    year: "2025",
+    roles: ["Management", "Design", "Development"],
+    description:
+      "A mobile application for tracking student attendance, built to streamline the late-slip and attendance management workflow for school administration.",
+    bg: "#f0f7ff",
+    accent: "#0099ff",
+  },
+  {
+    name: "AnimoPark",
+    subtitle: "Mobile App",
+    year: "2025",
+    roles: ["Design"],
+    description:
+      "A decentralized parking availability application designed for La Salle students — showing real-time parking slot status to reduce on-campus traffic congestion.",
+    bg: "#f5fff8",
+    accent: "#00b050",
+  },
+  {
+    name: "Siren",
+    subtitle: "Mobile App",
+    year: "2024",
+    roles: ["Management", "Design", "Development"],
+    description:
+      "An emergency response mobile app connecting citizens with the nearest response units. Designed for speed and clarity under stress.",
+    bg: "#fff8f0",
+    accent: "#ff8c00",
+  },
+  {
+    name: "Goranow",
+    subtitle: "Website",
+    year: "2024",
+    roles: ["Management", "Design"],
+    description:
+      "A travel agency website designed to showcase destinations, packages, and bookings for a modern, digital-first travel brand.",
+    bg: "#fdf5ff",
+    accent: "#9f4ef8",
+  },
+];
+---
+
+<section class="min-h-screen w-full flex items-center " id="projects">
+  <div class="container-page w-full py-20">
+    <p data-animate class="text-[11px] font-normal text-muted tracking-widest uppercase mb-4">Work</p>
+    <h2 data-animate class="font-serif mb-12" style="font-size: clamp(28px, 4vw, 42px);">Selected Projects</h2>
+
+    <div class="flex flex-col gap-4">
+      {projects.map((project, i) => (
+        <div
+          data-animate
+          class="border border-[#ebebeb] rounded-2xl p-9 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+          style={`background: ${project.bg}; transition-delay: ${i * 80}ms;`}
+        >
+          <div class="flex items-center gap-3 mb-6 flex-wrap">
+            <span class="text-xs text-muted font-normal">{project.year}</span>
+            <div class="flex gap-1.5 flex-wrap">
+              {project.roles.map((role) => (
+                <span
+                  class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-normal border bg-white"
+                  style={`color: ${project.accent}; border-color: ${project.accent};`}
+                >
+                  {role}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h3 class="font-serif font-bold tracking-tight leading-none mb-1" style="font-size: clamp(22px, 3vw, 32px);">
+                {project.name}
+              </h3>
+              <p class="text-xs text-muted font-normal">{project.subtitle}</p>
+            </div>
+            <div class="font-serif text-[48px] text-[#e8e8e8] font-bold leading-none shrink-0">
+              0{i + 1}
+            </div>
+          </div>
+
+          <p class="text-[14px] text-[#555] leading-[1.7] max-w-xl font-light mt-4">
+            {project.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
