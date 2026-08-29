@@ -1,14 +1,48 @@
 ---
-const projects = [
+type Project = {
+  name: string;
+  subtitle: string;
+  year: string;
+  roles: string[];
+  description: string;
+  links?: { label: string; href: string }[];
+};
+
+const projects: Project[] = [
+  {
+    name: "World Cup Analytics",
+    subtitle: "Data Pipeline",
+    year: "2026",
+    roles: ["Data Engineering", "Development", "Design"],
+    description:
+      "An ELT pipeline over every FIFA World Cup from 1930 to 2026. It ingests match history into DuckDB, models it with dbt into tested marts, and serves standings, scorers, and analytics through a FastAPI dashboard.",
+    links: [
+      { label: "Live site", href: "https://worldcup-analytics.vhyron.space" },
+      { label: "GitHub", href: "https://github.com/Vhyron/worldcup-analytics-pipeline" },
+    ],
+  },
+  {
+    name: "BetterKabankalan",
+    subtitle: "Civic Web Portal",
+    year: "2026",
+    roles: ["Documentation", "Contribution", "Maintenance"],
+    description:
+      "A community-driven, open-source portal making public information and services for Kabankalan City easier to find and access. Inspired by BetterGov.PH.",
+    links: [
+      { label: "Live site", href: "https://betterkabankalan.org" },
+      { label: "GitHub", href: "https://github.com/betterkabankalan/betterkabankalan" },
+    ],
+  },
   {
     name: "FireSafe",
     subtitle: "Web Dashboard",
     year: "2025",
     roles: ["Development"],
     description:
-      "An embedded college project displaying real-time sensor data from ESP8266 devices — fire and environmental monitoring visualized through a web dashboard.",
-    bg: "#fff5f5",
-    accent: "#ff4d4d",
+      "An embedded college project displaying real-time sensor data from ESP8266 devices. Fire and environmental monitoring visualized through a web dashboard.",
+    links: [
+      { label: "GitHub", href: "https://github.com/Vhyron/firesafe-embedded" },
+    ],
   },
   {
     name: "LatePortal",
@@ -17,8 +51,9 @@ const projects = [
     roles: ["Management", "Design", "Development"],
     description:
       "A mobile application for tracking student attendance, built to streamline the late-slip and attendance management workflow for school administration.",
-    bg: "#f0f7ff",
-    accent: "#0099ff",
+    links: [
+      { label: "GitHub", href: "https://github.com/Oniely/late-portal" },
+    ],
   },
   {
     name: "AnimoPark",
@@ -26,9 +61,7 @@ const projects = [
     year: "2025",
     roles: ["Design"],
     description:
-      "A decentralized parking availability application designed for La Salle students — showing real-time parking slot status to reduce on-campus traffic congestion.",
-    bg: "#f5fff8",
-    accent: "#00b050",
+      "A decentralized parking availability application designed for La Salle students, showing real-time parking slot status to reduce on-campus traffic congestion.",
   },
   {
     name: "Siren",
@@ -37,8 +70,9 @@ const projects = [
     roles: ["Management", "Design", "Development"],
     description:
       "An emergency response mobile app connecting citizens with the nearest response units. Designed for speed and clarity under stress.",
-    bg: "#fff8f0",
-    accent: "#ff8c00",
+    links: [
+      { label: "GitHub", href: "https://github.com/Vhyron/siren-app-main-v2" },
+    ],
   },
   {
     name: "Goranow",
@@ -47,8 +81,6 @@ const projects = [
     roles: ["Management", "Design"],
     description:
       "A travel agency website designed to showcase destinations, packages, and bookings for a modern, digital-first travel brand.",
-    bg: "#fdf5ff",
-    accent: "#9f4ef8",
   },
 ];
 ---
