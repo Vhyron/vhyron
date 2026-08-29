@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: 'Libre Baskerville', Georgia, serif;
   --font-sans: 'Poppins', system-ui, sans-serif;
 
-  --color-accent: #0099ff;
+  --color-accent: #333333;
   --color-muted: #666666;
   --color-border: #b0aeae;
   --color-surface: #f5f5f5;
@@ -35,7 +34,7 @@
   }
 
   h1, h2, h3 {
-    @apply font-serif font-normal leading-tight;
+    @apply font-sans font-medium leading-tight;
   }
 }
 

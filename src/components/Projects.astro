@@ -1,14 +1,48 @@
 ---
-const projects = [
+type Project = {
+  name: string;
+  subtitle: string;
+  year: string;
+  roles: string[];
+  description: string;
+  links?: { label: string; href: string }[];
+};
+
+const projects: Project[] = [
+  {
+    name: "World Cup Analytics",
+    subtitle: "Data Pipeline",
+    year: "2026",
+    roles: ["Data Engineering", "Development", "Design"],
+    description:
+      "An ELT pipeline over every FIFA World Cup from 1930 to 2026. It ingests match history into DuckDB, models it with dbt into tested marts, and serves standings, scorers, and analytics through a FastAPI dashboard.",
+    links: [
+      { label: "Live site", href: "https://worldcup-analytics.vhyron.space" },
+      { label: "GitHub", href: "https://github.com/Vhyron/worldcup-analytics-pipeline" },
+    ],
+  },
+  {
+    name: "BetterKabankalan",
+    subtitle: "Civic Web Portal",
+    year: "2026",
+    roles: ["Documentation", "Contribution", "Maintenance"],
+    description:
+      "A community-driven, open-source portal making public information and services for Kabankalan City easier to find and access. Inspired by BetterGov.PH.",
+    links: [
+      { label: "Live site", href: "https://betterkabankalan.org" },
+      { label: "GitHub", href: "https://github.com/betterkabankalan/betterkabankalan" },
+    ],
+  },
   {
     name: "FireSafe",
     subtitle: "Web Dashboard",
     year: "2025",
     roles: ["Development"],
     description:
-      "An embedded college project displaying real-time sensor data from ESP8266 devices — fire and environmental monitoring visualized through a web dashboard.",
-    bg: "#fff5f5",
-    accent: "#ff4d4d",
+      "An embedded college project displaying real-time sensor data from ESP8266 devices. Fire and environmental monitoring visualized through a web dashboard.",
+    links: [
+      { label: "GitHub", href: "https://github.com/Vhyron/firesafe-embedded" },
+    ],
   },
   {
     name: "LatePortal",
@@ -17,8 +51,9 @@ const projects = [
     roles: ["Management", "Design", "Development"],
     description:
       "A mobile application for tracking student attendance, built to streamline the late-slip and attendance management workflow for school administration.",
-    bg: "#f0f7ff",
-    accent: "#0099ff",
+    links: [
+      { label: "GitHub", href: "https://github.com/Oniely/late-portal" },
+    ],
   },
   {
     name: "AnimoPark",
@@ -26,9 +61,7 @@ const projects = [
     year: "2025",
     roles: ["Design"],
     description:
-      "A decentralized parking availability application designed for La Salle students — showing real-time parking slot status to reduce on-campus traffic congestion.",
-    bg: "#f5fff8",
-    accent: "#00b050",
+      "A decentralized parking availability application designed for La Salle students, showing real-time parking slot status to reduce on-campus traffic congestion.",
   },
   {
     name: "Siren",
@@ -37,8 +70,9 @@ const projects = [
     roles: ["Management", "Design", "Development"],
     description:
       "An emergency response mobile app connecting citizens with the nearest response units. Designed for speed and clarity under stress.",
-    bg: "#fff8f0",
-    accent: "#ff8c00",
+    links: [
+      { label: "GitHub", href: "https://github.com/Vhyron/siren-app-main-v2" },
+    ],
   },
   {
     name: "Goranow",
@@ -47,53 +81,58 @@ const projects = [
     roles: ["Management", "Design"],
     description:
       "A travel agency website designed to showcase destinations, packages, and bookings for a modern, digital-first travel brand.",
-    bg: "#fdf5ff",
-    accent: "#9f4ef8",
   },
 ];
 ---
 
-<section class="min-h-screen w-full flex items-center " id="projects">
+<section class="min-h-screen w-full flex items-center" id="projects">
   <div class="container-page w-full py-20">
     <p data-animate class="text-[11px] font-normal text-muted tracking-widest uppercase mb-4">Work</p>
-    <h2 data-animate class="font-serif mb-12" style="font-size: clamp(28px, 4vw, 42px);">Selected Projects</h2>
+    <h2 data-animate class="font-medium mb-12" style="font-size: clamp(28px, 4vw, 42px);">Selected Projects</h2>
 
-    <div class="flex flex-col gap-4">
+    <div class="grid gap-5" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
       {projects.map((project, i) => (
         <div
           data-animate
-          class="border border-[#ebebeb] rounded-2xl p-9 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
-          style={`background: ${project.bg}; transition-delay: ${i * 80}ms;`}
+          class="bg-white border border-[#ebebeb] rounded-2xl p-6 flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+          style={`transition-delay: ${i * 80}ms;`}
         >
-          <div class="flex items-center gap-3 mb-6 flex-wrap">
+          <div class="flex items-baseline justify-between gap-3 mb-5">
             <span class="text-xs text-muted font-normal">{project.year}</span>
-            <div class="flex gap-1.5 flex-wrap">
-              {project.roles.map((role) => (
-                <span
-                  class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-normal border bg-white"
-                  style={`color: ${project.accent}; border-color: ${project.accent};`}
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
+            <span class="font-medium text-[28px] text-[#e8e8e8] leading-none">0{i + 1}</span>
           </div>
 
-          <div class="flex justify-between items-start gap-4">
-            <div>
-              <h3 class="font-serif font-bold tracking-tight leading-none mb-1" style="font-size: clamp(22px, 3vw, 32px);">
-                {project.name}
-              </h3>
-              <p class="text-xs text-muted font-normal">{project.subtitle}</p>
-            </div>
-            <div class="font-serif text-[48px] text-[#e8e8e8] font-bold leading-none shrink-0">
-              0{i + 1}
-            </div>
-          </div>
+          <h3 class="font-medium tracking-tight leading-tight mb-1 text-[20px]">
+            {project.name}
+          </h3>
+          <p class="text-xs text-muted font-normal mb-4">{project.subtitle}</p>
 
-          <p class="text-[14px] text-[#555] leading-[1.7] max-w-xl font-light mt-4">
+          <p class="text-[14px] text-[#555] leading-[1.7] font-light flex-1">
             {project.description}
           </p>
+
+          <div class="flex gap-1.5 flex-wrap mt-5">
+            {project.roles.map((role) => (
+              <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-normal border border-border text-muted bg-surface">
+                {role}
+              </span>
+            ))}
+          </div>
+
+          {project.links && (
+            <div class="flex gap-4 flex-wrap mt-4 pt-4 border-t border-[#e4e4e4]">
+              {project.links.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[12px] text-muted font-normal hover:text-black transition-colors duration-200"
+                >
+                  {link.label} <span aria-hidden="true">&#8599;</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
