@@ -4,22 +4,16 @@ const collaborators = [
     name: "Niel Angelo Gencaya",
     role: "Software Engineer",
     initials: "NG",
-    avatarBg: "#e8f4ff",
-    avatarText: "#0099ff",
   },
   {
     name: "Rai Reyes Jr.",
     role: "Software Developer",
     initials: "RR",
-    avatarBg: "#edfff5",
-    avatarText: "#00b050",
   },
   {
     name: "Reymart Louie Capapas",
     role: "UI/UX Designer",
     initials: "RC",
-    avatarBg: "#fdf0ff",
-    avatarText: "#9f4ef8",
   },
 ];
 ---
@@ -36,8 +30,7 @@ const collaborators = [
       {collaborators.map((person, i) => (
         <div data-animate style={`transition-delay: ${i * 80}ms;`} class="flex items-center gap-4 bg-white border border-[#ebebeb] rounded-xl px-6 py-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
           <div
-            class="w-12 h-12 rounded-full flex items-center justify-center text-[14px] font-medium shrink-0"
-            style={`background: ${person.avatarBg}; color: ${person.avatarText};`}
+            class="w-12 h-12 rounded-full bg-surface text-muted flex items-center justify-center text-[14px] font-medium shrink-0"
           >
             {person.initials}
           </div>

@@ -31,8 +31,8 @@ const testimonials = [
 
     <div class="grid gap-5" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
       {testimonials.map((t, i) => (
-        <div data-animate style={`transition-delay: ${i * 80}ms;`} class="border border-[#ebebeb] rounded-2xl p-8 flex flex-col gap-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
-          <div class="font-serif text-[56px] text-accent leading-[0.8] font-bold">"</div>
+        <div data-animate style={`transition-delay: ${i * 80}ms;`} class="bg-white border border-[#ebebeb] rounded-2xl p-8 flex flex-col gap-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
+          <div class="font-medium text-[56px] text-border leading-[0.8] ">"</div>
 
           <p class="text-[14px] leading-[1.8] text-[#333] font-light flex-1">
             {t.quote}
