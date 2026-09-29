@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = "Vhyron",
-  description = "Computer engineering student specializing in project management, development, design, and deployment.",
+  description = "Data-focused technical and project lead working across data engineering and freelance product delivery, from clear specifications through deployment.",
 } = Astro.props;
 ---
 
@@ -26,28 +26,35 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
     <script is:inline>
       history.scrollRestoration = 'manual';
-      if (window.location.hash) {
-        history.replaceState(null, '', window.location.pathname);
-      }
     </script>
   </head>
   <body>
     <slot />
 
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const previewMode = import.meta.env.DEV
+        ? new URLSearchParams(window.location.search).get('preview')
+        : null;
 
-      document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+      if (previewMode === 'original-no-fade-in') {
+        document.documentElement.classList.add('simulate-original-no-fade-in');
+      } else if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.documentElement.classList.add('animations-enabled');
+        document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+      }
     </script>
   </body>
 </html>
