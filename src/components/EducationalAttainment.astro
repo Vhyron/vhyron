@@ -1,0 +1,109 @@
+---
+type Attainment = {
+  title: string;
+  issuer: string;
+  kind: "Course" | "Career Track" | "Skill Track" | "Assessment" | "Certification";
+  issued: string;
+  expiry?: string | null;
+  credentialUrl?: string;
+};
+
+const attainments: Attainment[] = [
+  {
+    title: "Data Engineer Associate",
+    issuer: "DataCamp",
+    kind: "Certification",
+    issued: "Aug 2026",
+    expiry: "Aug 2028",
+    credentialUrl: "https://www.datacamp.com/certificate/DEA0018055387700",
+  },
+  {
+    title: "Associate Data Engineer in SQL",
+    issuer: "DataCamp",
+    kind: "Career Track",
+    issued: "Jul 2026",
+    expiry: "",
+    credentialUrl: "https://www.datacamp.com/completed/statement-of-accomplishment/track/58b0c68b570b56c86618a791530c8a9b1bfba880?utm_medium=organic_social&utm_campaign=sharewidget&utm_content=soa",
+  },
+  {
+    title: "Project Management Essentials Certified (PMEC)",
+    issuer: "Management & Strategy Institute",
+    kind: "Certification",
+    issued: "Nov 2025",
+    expiry: "",
+    credentialUrl: "https://www.proprofs.com/quiz-school/user_certificate.php?id=350584624&qid=3593197",
+  },
+  {
+    title: "SQL (Basic) Certificate",
+    issuer: "HackerRank",
+    kind: "Assessment",
+    issued: "Jun 2025",
+    expiry: "",
+    credentialUrl: "https://www.hackerrank.com/certificates/iframe/6ef86192e1a7",
+  },
+  {
+    title: "Java (Basic) Certificate",
+    issuer: "HackerRank",
+    kind: "Assessment",
+    issued: "Jun 2025",
+    expiry: "",
+    credentialUrl: "https://www.hackerrank.com/certificates/iframe/688c6f1a87b2",
+  },
+];
+
+const categories = ["Courses", "Career Tracks", "Skill Tracks", "Assessments", "Certifications"];
+---
+
+<section class="w-full" id="education">
+  <div class="container-page w-full py-20">
+    <p data-animate class="text-[11px] font-normal text-muted tracking-widest uppercase mb-4">Learning</p>
+    <h2 data-animate class="font-medium mb-3" style="font-size: clamp(28px, 4vw, 42px);">Educational Attainment</h2>
+    <p data-animate class="text-[14px] text-muted font-light leading-[1.8] max-w-2xl mb-9">
+      A record of the courses, career and skill tracks, assessments, and certifications that shape my practice.
+    </p>
+
+    <div data-animate class="flex flex-wrap gap-2 mb-8" aria-label="Credential categories">
+      {categories.map((category) => (
+        <span class="inline-flex items-center rounded-full px-3 py-1.5 text-[12px] font-normal border border-[#ebebeb] text-muted bg-white">
+          {category}
+        </span>
+      ))}
+    </div>
+
+    {attainments.length > 0 ? (
+      <div class="grid gap-5" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        {attainments.map((item, i) => (
+          <article data-animate style={`transition-delay: ${i * 80}ms;`} class="bg-white border border-[#ebebeb] rounded-2xl p-6 flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
+            <div class="flex items-center justify-between gap-3 mb-5">
+              <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] border border-border text-muted">{item.kind}</span>
+            </div>
+            <h3 class="font-medium tracking-tight leading-tight mb-1 text-[18px]">{item.title}</h3>
+            <p class="text-xs text-muted mb-4">{item.issuer}</p>
+            <dl class={`grid ${item.expiry ? "grid-cols-2" : "grid-cols-1"} gap-3 mt-1 text-xs`}>
+              <div>
+                <dt class="text-muted mb-0.5">Issued</dt>
+                <dd class="text-[#333]">{item.issued}</dd>
+              </div>
+              {item.expiry && (
+                <div>
+                  <dt class="text-muted mb-0.5">Expiry</dt>
+                  <dd class="text-[#333]">{item.expiry}</dd>
+                </div>
+              )}
+            </dl>
+            {item.credentialUrl && (
+              <a href={item.credentialUrl} target="_blank" rel="noopener noreferrer" class="text-[12px] text-muted hover:text-black transition-colors mt-5 pt-4 border-t border-[#e4e4e4]">
+                View credential <span aria-hidden="true">&#8599;</span>
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div data-animate class="rounded-2xl border border-dashed border-[#d8d8d8] bg-[#fafafa] px-6 py-10 text-center">
+        <p class="text-[14px] font-normal text-[#444] mb-1">Credentials and assessment results are on the way.</p>
+        <p class="text-[12px] text-muted font-light">This section will include the issuing organization, completion date, and a verification link when available.</p>
+      </div>
+    )}
+  </div>
+</section>
